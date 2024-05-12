@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('city_id')->constrained();
-            $table->string('name');
+            $table->string('name', 255);
             $table->string('cpf', 11)->unique();
             $table->string('photo')->nullable();
             $table->string('cep', 8);
