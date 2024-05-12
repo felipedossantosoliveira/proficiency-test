@@ -4,8 +4,15 @@ namespace App\Enums\Traits;
 
 use BackedEnum;
 
+/**
+ * Trait HandleOptions
+ */
 trait HandleOptions
 {
+    /**
+     * @param bool $takeDescription
+     * @return array
+     */
     public static function options(bool $takeDescription = false): array
     {
         $cases = static::cases();
@@ -29,9 +36,14 @@ trait HandleOptions
             : array_column($cases, 'description');
     }
 
+    /**
+     * @param int $id
+     * @return array
+     */
     public static function optionById(int $id): array
     {
         $enum = static::from($id);
+
         return ['value' => $enum->value, 'description' => $enum->description()];
     }
 }

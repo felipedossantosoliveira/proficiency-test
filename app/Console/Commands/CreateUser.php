@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules;
 
+/**
+ * Class CreateUser
+ */
 class CreateUser extends Command
 {
     /**
@@ -27,7 +30,7 @@ class CreateUser extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         $name = $this->argument('name');
         $email = $this->argument('email');
@@ -37,7 +40,7 @@ class CreateUser extends Command
             'name' => $name,
             'email' => $email,
             'password' => $password,
-            'password_confirmation' => $this->ask('Confirm password:')
+            'password_confirmation' => $this->ask('Confirm password:'),
         ], [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -46,6 +49,7 @@ class CreateUser extends Command
 
         if ($validator->fails()) {
             $this->error($validator->errors()->first());
+
             return;
         }
 

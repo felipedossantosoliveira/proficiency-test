@@ -6,8 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+/**
+ * Class AuthController
+ */
 class AuthController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function createToken(Request $request): JsonResponse
     {
         $credentials = $request->only('email', 'password');
@@ -23,6 +30,9 @@ class AuthController extends Controller
         return response()->json(['message' => 'Unauthorized'], 401);
     }
 
+    /**
+     * @return JsonResponse
+     */
     public function listTokens(): JsonResponse
     {
         $tokens = auth()->user()->tokens->map(function ($token) {
@@ -33,9 +43,14 @@ class AuthController extends Controller
                 'expires_at' => $token->expires_at,
             ];
         });
+
         return response()->json($tokens);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function revokeToken(Request $request): JsonResponse
     {
         $request->validate(['id' => 'required']);

@@ -3,9 +3,13 @@
 namespace App\Http\Requests;
 
 use App\Enums\SexEnum;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
+/**
+ * Class CustomerStoreRequest
+ */
 class CustomerStoreRequest extends FormRequest
 {
     /**

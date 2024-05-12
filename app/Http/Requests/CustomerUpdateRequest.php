@@ -6,6 +6,9 @@ use App\Enums\SexEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
+/**
+ * CustomerUpdateRequest
+ */
 class CustomerUpdateRequest extends FormRequest
 {
     /**
