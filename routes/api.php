@@ -18,9 +18,8 @@ Route::prefix('v1')->group(function () {
         Route::prefix('customers')->name('customers.')->group(function () {
             Route::post('/create', [CustomerController::class, 'store'])->name('store');
             Route::get('/', [CustomerController::class, 'search'])->name('customers.search');
-//            Route::get('/{customer}', [CustomerController::class, 'show'])->name('customers.show');
-//            Route::put('/{customer}', [CustomerController::class, 'update'])->name('customers.update');
-//            Route::delete('/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+            Route::put('/{id}/update', [CustomerController::class, 'update'])->name('customers.update');
+            Route::delete('/destroy', [CustomerController::class, 'destroy'])->name('customers.destroy');
         });
     });
 });

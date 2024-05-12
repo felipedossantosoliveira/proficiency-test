@@ -23,14 +23,14 @@ class CustomerStoreRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
             'name' => 'required|min:3|max:255',
             'city_id' => 'required|exists:cities,id',
-            'cpf' => 'required|size:11',
+            'cpf' => 'required|size:11|unique:customers,cpf',
             'cep' => 'required|size:8',
             'address' => 'required|min:3|max:255',
             'number' => 'required|min:1|max:100',
