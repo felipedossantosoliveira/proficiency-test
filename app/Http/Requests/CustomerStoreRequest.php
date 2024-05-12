@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Enums\SexEnum;
+use App\Rules\CpfValidation;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -30,7 +31,7 @@ class CustomerStoreRequest extends FormRequest
         return [
             'name' => 'required|min:3|max:255',
             'city_id' => 'required|exists:cities,id',
-            'cpf' => 'required|size:11|unique:customers,cpf',
+            'cpf' => ['required', 'size:11', 'unique:customers,cpf', new CpfValidation()],
             'cep' => 'required|size:8',
             'address' => 'required|min:3|max:255',
             'number' => 'required|min:1|max:100',
@@ -42,7 +43,6 @@ class CustomerStoreRequest extends FormRequest
     /**
      * Get custom attributes for validator errors.
      */
-
     public function attributes(): array
     {
         return [

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Enums\SexEnum;
+use App\Rules\CpfValidation;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -33,6 +34,7 @@ class CustomerUpdateRequest extends FormRequest
             'cpf' => [
                 'exclude_if:cpf,null|size:11',
                 Rule::unique('customers')->ignore($id, 'id'),
+                new CpfValidation(),
             ],
             'cep' => 'exclude_if:nullable,cep|size:8',
             'address' => 'exclude_if:nullable,address|min:3|max:255',
