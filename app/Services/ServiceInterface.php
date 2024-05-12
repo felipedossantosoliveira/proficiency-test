@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
  * Interface ServiceInterface
@@ -12,28 +12,47 @@ interface ServiceInterface
 {
     /**
      * @param Request $request
-     * @return Model
+     * @return array
      */
-    public function store(Request $request): Model;
+    public function store(Request $request): array;
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return array
+     */
+    public function storeImage(Request $request, $id): array;
+
+    /**
+     * @param $id
+     * @return array|BinaryFileResponse
+     */
+    public function getImage($id): array|BinaryFileResponse;
 
     /**
      * @param Request $request
      * @param int $id
-     * @return Model
+     * @return array
      */
-    public function update(Request $request, int $id): Model;
+    public function update(Request $request, int $id): array;
 
     /**
      * @param int $id
-     * @return bool|string
+     * @return array
      */
-    public function destroy(int $id): bool|string;
+    public function destroy(int $id): array;
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function restore(int $id): array;
 
     /**
      * @param Request $request
-     * @return object
+     * @return array
      */
-    public function search(Request $request): object;
+    public function search(Request $request): array;
 
     /**
      * @return string

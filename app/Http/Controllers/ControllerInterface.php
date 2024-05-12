@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
  * Interface ControllerInterface
@@ -18,6 +19,19 @@ interface ControllerInterface
 
     /**
      * @param Request $request
+     * @param $id
+     * @return JsonResponse
+     */
+    public function storeImage(Request $request, $id): JsonResponse;
+
+    /**
+     * @param $id
+     * @return JsonResponse|BinaryFileResponse
+     */
+    public function getImage($id): JsonResponse|BinaryFileResponse;
+
+    /**
+     * @param Request $request
      * @param int $id
      * @return JsonResponse
      */
@@ -29,6 +43,11 @@ interface ControllerInterface
      */
     public function destroy(Request $request): JsonResponse;
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function restore(Request $request): JsonResponse;
 
     /**
      * @param Request $request

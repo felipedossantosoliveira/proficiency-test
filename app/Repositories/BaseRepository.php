@@ -31,6 +31,27 @@ abstract class BaseRepository implements RepositoryInterface
      * @param Model $model
      * @return Model
      */
+    public function storeImage(array $data, Model $model): Model
+    {
+        $model->update($data);
+
+        return $model;
+    }
+
+    /**
+     * @param Model $model
+     * @return ?string
+     */
+    public function hasImage(Model $model): ?string
+    {
+        return $model->photo;
+    }
+
+    /**
+     * @param array $data
+     * @param Model $model
+     * @return Model
+     */
     public function update(array $data, Model $model): Model
     {
         $model->update($data);
@@ -71,5 +92,13 @@ abstract class BaseRepository implements RepositoryInterface
     public function getModelName(): string
     {
         return class_basename($this->model);
+    }
+
+    /**
+     * @param  Model  $model
+     */
+    public function restore($model): bool
+    {
+        return $model->restore();
     }
 }

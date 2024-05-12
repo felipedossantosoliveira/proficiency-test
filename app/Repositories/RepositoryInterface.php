@@ -20,6 +20,19 @@ interface RepositoryInterface
      * @param Model $model
      * @return Model
      */
+    public function storeImage(array $data, Model $model): Model;
+
+    /**
+     * @param Model $model
+     * @return ?string
+     */
+    public function hasImage(Model $model): ?string;
+
+    /**
+     * @param array $data
+     * @param Model $model
+     * @return Model
+     */
     public function update(array $data, Model $model): Model;
 
     /**
@@ -45,5 +58,10 @@ interface RepositoryInterface
      */
     public function getModelName(): string;
 
+    /**
+     * @param Model $model
+     * @return bool
+     */
+    public function restore(Model $model): bool;
 
 }
