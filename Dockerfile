@@ -20,6 +20,8 @@ RUN apt-get install -y libpq-dev \
 
 WORKDIR /var/www/html
 
+## Se for rodar apenas dentro da imagem sem o docker-compose descomente as linhas abaixo
+
 #COPY . .
 
 #RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
