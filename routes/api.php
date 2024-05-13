@@ -3,7 +3,6 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
-use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
