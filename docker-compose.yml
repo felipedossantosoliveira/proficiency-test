@@ -1,35 +1,38 @@
 version: '3.7'
 
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
-    volumes:
-        - .:/var/www/html
-    networks:
-      - app-network
-
   db:
       image: postgres
+      container_name: db
       restart: always
       shm_size: 128mb
-      environment:
-          POSTGRES_PASSWORD: password
       ports:
-        - "5434:5432"
+          - "5432:5432"
+      environment:
+          POSTGRES_DB: laravel
+          POSTGRES_PASSWORD: example
       networks:
-        - app-network
+            - app-network
 
   adminer:
       image: adminer
       restart: always
       ports:
-        - 8080:8080
+          - "8080:8080"
       networks:
-        - app-network
+            - app-network
+
+  app:
+      build:
+          context: .
+          dockerfile: Dockerfile
+      container_name: app
+      ports:
+          - "8000:8000"
+      volumes:
+          - .:/var/www/html
+      networks:
+          - app-network
 
 networks:
     app-network:
