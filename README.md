@@ -20,16 +20,16 @@ This is a proficiency test for a job application. List of technologies used:
 
 ## Installation Docker-compose
 1. Clone the repository
-2. Run `docker-compose up -d`
-3. Run `cp .env.example .env`
-4. Create a database in PostgreSQL and configure the `.env` file
-5. Run `composer install`
-6. Run `php artisan migrate:fresh --seed`
-7. Run `php artisan key:generate`
+2. Run `docker compose up -d --build`
+3. Run `docker exec app cp .env.example .env`
+4. Run `docker exec app composer install`
+5. Run `docker exec db psql -U postgres -c "CREATE DATABASE laravel;"` 
+6. Run `docker exec app php artisan migrate:fresh --seed`
+7. Run `docker exec app php artisan key:generate`
 8. Access the application at `http://localhost:8000`
 
 ## Create user command
-1. Run `php artisan app:create-user {name} {email} {password}`
+1. Run `docker exec -it app php artisan app:create-user {name} {email} {password}`
 2. Confirm password
 3. User created!
 
