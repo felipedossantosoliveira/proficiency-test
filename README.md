@@ -10,21 +10,23 @@ This is a proficiency test for a job application. List of technologies used:
 
 ## Installation Manual
 1. Clone the repository
-2. Run `composer install`
-3. Run `cp .env.example .env`
-3. Run `php artisan migrate:fresh --seed`
-4. Run `php artisan key:generate`
-4. Run `php artisan serve`
-5. Access the application at `http://localhost:8000`
+2. Run `cp .env.example .env`
+3. Create a database in PostgreSQL and configure the `.env` file
+4. Run `composer install`
+5. Run `php artisan migrate:fresh --seed`
+6. Run `php artisan key:generate`
+7. Run `php artisan serve`
+8. Access the application at `http://localhost:8000`
 
 ## Installation Docker-compose
 1. Clone the repository
 2. Run `docker-compose up -d`
-3. Run `composer install`
-4. Run `cp .env.example .env`
-5. Run `php artisan migrate:fresh --seed`
-6. Run `php artisan key:generate`
-7. Access the application at `http://localhost:8000`
+3. Run `cp .env.example .env`
+4. Create a database in PostgreSQL and configure the `.env` file
+5. Run `composer install`
+6. Run `php artisan migrate:fresh --seed`
+7. Run `php artisan key:generate`
+8. Access the application at `http://localhost:8000`
 
 ## Create user command
 1. Run `php artisan app:create-user {name} {email} {password}`
