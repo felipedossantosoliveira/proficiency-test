@@ -31,6 +31,31 @@ class AuthController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function login(Request $request): JsonResponse
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (auth()->attempt($credentials)) {
+
+            $user = auth()->user();
+            $expires_at = now()->addDays(1);
+            $token = $user->createToken(
+                $request->get('name', 'Personal Access Token'), expiresAt: $expires_at
+            )->plainTextToken;
+
+            return response()->json([
+                'token' => $token,
+                'expires_at' => $expires_at,
+                'user' => $user,
+            ]);
+        }
+
+    }
+
+    /**
      * @return JsonResponse
      */
     public function listTokens(): JsonResponse

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
     Route::post('auth/create-token', [AuthController::class, 'createToken']);
+    Route::post('auth/login', [AuthController::class, 'login']);
 
     Route::middleware('auth:sanctum')->group(function () {
 
